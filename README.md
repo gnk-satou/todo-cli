@@ -1,47 +1,60 @@
-![CI](https://github.com/gnk-satou/todo-cli/actions/workflows/ci.yml/badge.svg)
-
 # todo-cli
 
-A minimal command-line TODO manager written in Python. Tasks are stored in a local JSON file.
+![CI](https://github.com/gnk-satou/todo-cli/actions/workflows/ci.yml/badge.svg)
+
+Minimal command-line TODO manager written in Python. Tasks are stored locally as JSON — no external services, no dependencies beyond the standard library.
 
 ## Features
 
 - Add, list, complete, and remove tasks
-- Zero runtime dependencies (standard library only)
-- Tested with pytest, CI via GitHub Actions
+- Local JSON storage
+- Zero runtime dependencies
+- Tested with pytest, CI on Python 3.10 / 3.12 via GitHub Actions
 
-## Install
+## Installation
 
 ```bash
+git clone https://github.com/gnk-satou/todo-cli.git
+cd todo-cli
 pip install -e .
 ```
 
 ## Usage
 
 ```bash
-todo add "buy milk"
-todo list
-todo done 1
-todo remove 1
-```
+# Add a task
+$ todo add "Write README"
+Added #1: Write README
 
-Example output:
-
-```
+# List tasks
 $ todo list
-[ ] #1 buy milk
-[x] #2 write README
+[ ] #1 Write README
+
+# Mark a task as done
+$ todo done 1
+Done #1: Write README
+
+$ todo list
+[x] #1 Write README
+
+# Remove a task
+$ todo remove 1
+Removed #1
 ```
-
-## Storage
-
-Tasks are saved to `~/.todo-cli.json`. Override the location with the `TODO_CLI_FILE` environment variable.
 
 ## Development
 
 ```bash
 pip install -e . pytest
 pytest
+```
+
+## Project Structure
+
+```
+src/todo_cli/   # Application code
+tests/          # pytest test suite
+.github/workflows/ci.yml  # CI (Python 3.10 / 3.12)
 ```
 
 ## License
